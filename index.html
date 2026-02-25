@@ -1,104 +1,573 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Virales Distribuidora LTDA</title>
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fa;
-    color: #1a1a1a;
-}
-header {
-    background-color: #0d3b66;
-    color: white;
-    padding: 40px 20px;
-    text-align: center;
-}
-section {
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: auto;
-}
-h2 {
-    color: #0d3b66;
-}
-.card {
-    background: white;
-    padding: 20px;
-    margin: 15px 0;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-}
-footer {
-    background-color: #0d3b66;
-    color: white;
-    text-align: center;
-    padding: 20px;
-}
-.button {
-    display: inline-block;
-    padding: 12px 20px;
-    background-color: #2a9d8f;
-    color: white;
-    text-decoration: none;
-    border-radius: 5px;
-    margin-top: 15px;
-}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virales | Soluções para Saúde e Laboratório</title>
+  <meta name="description" content="Soluções para saúde e laboratório com conformidade, custo-benefício e foco em prazos. Contato via WhatsApp." />
+  <meta name="theme-color" content="#0B2A5B" />
+
+  <!-- Premium typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#ffffff;
+      --surface:#F7F9FD;
+      --surface2:#EEF3FF;
+      --text:#0B1B33;
+      --muted:#5A667A;
+      --brand:#0B2A5B;
+      --brand2:#1B67FF;
+      --ok:#14B8A6;
+      --line:rgba(11,27,51,.10);
+      --line2:rgba(11,27,51,.06);
+      --shadow: 0 18px 50px rgba(11,27,51,.10);
+      --shadow2: 0 10px 24px rgba(11,27,51,.08);
+      --radius:18px;
+      --max:1120px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{
+      margin:0; padding:0;
+      font-family: "Manrope", system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:var(--bg);
+    }
+    a{color:inherit; text-decoration:none}
+    .container{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* Premium subtle background (no images) */
+    .bg{
+      position:relative;
+      overflow:hidden;
+      min-height:100vh;
+    }
+    .bg:before{
+      content:"";
+      position:absolute; inset:-240px -320px auto auto;
+      width:820px; height:820px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(27,103,255,.18), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(20,184,166,.12), transparent 60%);
+      filter: blur(8px);
+      pointer-events:none;
+      transform: translateZ(0);
+      animation: float1 10s ease-in-out infinite alternate;
+    }
+    .bg:after{
+      content:"";
+      position:absolute; inset:auto auto -320px -280px;
+      width:700px; height:700px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(11,42,91,.12), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(27,103,255,.12), transparent 60%);
+      filter: blur(10px);
+      pointer-events:none;
+      transform: translateZ(0);
+      animation: float2 12s ease-in-out infinite alternate;
+    }
+    @keyframes float1{
+      from{transform: translate(0,0) scale(1)}
+      to{transform: translate(-26px, 18px) scale(1.02)}
+    }
+    @keyframes float2{
+      from{transform: translate(0,0) scale(1)}
+      to{transform: translate(22px, -14px) scale(1.02)}
+    }
+
+    /* Top bar */
+    .topbar{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(12px);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 0; gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .mark{
+      width:36px; height:36px; border-radius:14px;
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      box-shadow: 0 14px 28px rgba(27,103,255,.16);
+      position:relative;
+      display:grid; place-items:center;
+      color:#fff;
+      font-weight:900;
+      letter-spacing:-.5px;
+      user-select:none;
+    }
+    .wordmark{display:flex; flex-direction:column; line-height:1.1}
+    .wordmark .name{font-size:14px; color:var(--brand)}
+    .wordmark .tag{font-size:12px; color:var(--muted); font-weight:800}
+
+    .menu{display:flex; gap:18px; align-items:center}
+    .menu a{font-weight:900; font-size:14px; color:var(--muted)}
+    .menu a:hover{color:var(--text)}
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 14px;
+      border-radius:14px;
+      font-weight:900; font-size:14px;
+      border:1px solid var(--line);
+      background:#fff;
+      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      cursor:pointer;
+      white-space:nowrap;
+    }
+    .btn:hover{transform: translateY(-1px); box-shadow: var(--shadow2)}
+    .btn.primary{
+      background: linear-gradient(135deg, var(--brand), var(--brand2));
+      color:#fff;
+      border-color: rgba(27,103,255,.22);
+      box-shadow: 0 14px 30px rgba(27,103,255,.14);
+    }
+    .hamb{display:none}
+
+    /* Hero */
+    .hero{
+      padding:60px 0 26px;
+      border-bottom:1px solid var(--line);
+      background: linear-gradient(180deg, var(--surface), #fff 70%);
+      position:relative;
+      z-index:1;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:stretch;
+    }
+
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--line2);
+      color:var(--muted);
+      font-weight:900;
+      font-size:13px;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:46px;
+      line-height:1.06;
+      letter-spacing:-.9px;
+      color:var(--brand);
+    }
+    .sub{
+      margin:0;
+      color:var(--muted);
+      font-size:17px;
+      line-height:1.65;
+      max-width: 66ch;
+      font-weight:650;
+    }
+    .hero-actions{margin-top:18px; display:flex; gap:12px; flex-wrap:wrap}
+
+    .panel{
+      background: rgba(255,255,255,.78);
+      border:1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .panel:before{
+      content:"";
+      position:absolute; inset:-140px -180px auto auto;
+      width:520px; height:520px; border-radius:50%;
+      background: radial-gradient(circle at 30% 30%, rgba(27,103,255,.20), transparent 55%),
+                  radial-gradient(circle at 70% 70%, rgba(20,184,166,.12), transparent 60%);
+      filter: blur(10px);
+      pointer-events:none;
+    }
+    .panel h3{
+      margin:0 0 10px;
+      font-size:16px;
+      color:var(--brand);
+      letter-spacing:-.2px;
+      position:relative;
+    }
+    .bullets{display:grid; gap:10px; position:relative}
+    .bullet{
+      display:flex; gap:10px; align-items:flex-start;
+      padding:12px 12px;
+      border-radius: 16px;
+      background: rgba(247,249,253,.9);
+      border:1px solid rgba(11,27,51,.06);
+      color: var(--muted);
+      font-size:14px;
+      line-height:1.45;
+      font-weight:650;
+    }
+    .icon{
+      width:18px; height:18px; border-radius:7px;
+      background: rgba(27,103,255,.10);
+      border:1px solid rgba(27,103,255,.18);
+      flex:0 0 auto;
+      margin-top:2px;
+      position:relative;
+    }
+    .icon:after{
+      content:"";
+      position:absolute; inset:5px;
+      border-radius:6px;
+      background: rgba(27,103,255,.65);
+    }
+    .bullet b{color:var(--brand)}
+
+    /* Sections */
+    section{padding:56px 0; position:relative; z-index:1;}
+    .head{display:flex; align-items:flex-end; justify-content:space-between; gap:18px; margin-bottom:18px}
+    h2{margin:0; font-size:26px; letter-spacing:-.4px; color:var(--brand)}
+    .lead{margin:0; color:var(--muted); font-size:15px; line-height:1.7; font-weight:650; max-width:78ch}
+
+    .grid3{display:grid; grid-template-columns: repeat(3,1fr); gap:14px}
+    .card{
+      background: rgba(255,255,255,.86);
+      border:1px solid var(--line);
+      border-radius: 22px;
+      padding:18px;
+      box-shadow: 0 8px 18px rgba(11,27,51,.06);
+    }
+    .card h3{margin:0 0 8px; font-size:16px; color:var(--brand); letter-spacing:-.2px}
+    .card p{margin:0; color:var(--muted); font-size:14px; line-height:1.65; font-weight:650}
+    .card .mini{
+      margin-top:10px;
+      color: rgba(90,102,122,.9);
+      font-size:13px;
+      font-weight:800;
+    }
+
+    .cta{
+      margin-top:16px;
+      border-radius: 22px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.90);
+      padding:18px;
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      box-shadow: var(--shadow2);
+    }
+    .cta h3{margin:0; font-size:16px; color:var(--brand)}
+    .cta p{margin:6px 0 0; color:var(--muted); font-size:14px; line-height:1.55; font-weight:650}
+
+    /* Contact */
+    .contact{
+      background: linear-gradient(180deg, #fff, var(--surface));
+      border-top:1px solid var(--line);
+    }
+    .contact-grid{display:grid; grid-template-columns: 1.1fr .9fr; gap:14px}
+    .form{display:grid; gap:10px; margin-top:10px}
+    input, textarea{
+      width:100%;
+      padding:12px 12px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:#fff;
+      color:var(--text);
+      outline:none;
+      font-size:14px;
+      font-weight:650;
+    }
+    textarea{min-height:120px; resize:vertical}
+    .helper{color:var(--muted); font-size:12px; line-height:1.45; font-weight:650}
+
+    /* Footer */
+    footer{
+      padding:26px 0 74px;
+      background: var(--surface);
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:800;
+    }
+    .foot{display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap}
+    .links{display:flex; gap:14px; flex-wrap:wrap}
+    .links a:hover{color:var(--text)}
+
+    /* WhatsApp floating */
+    .wpp{
+      position:fixed; right:18px; bottom:18px; z-index:60;
+      display:flex; align-items:center; gap:10px;
+      padding:12px 14px;
+      border-radius:999px;
+      background:#25D366;
+      color:#072B1A;
+      font-weight:900;
+      box-shadow: 0 16px 34px rgba(11,27,51,.16);
+      border:1px solid rgba(0,0,0,.06);
+    }
+    .wpp:hover{transform: translateY(-1px)}
+    .wpp svg{flex:0 0 auto}
+
+    @media (max-width: 940px){
+      .hero-grid{grid-template-columns:1fr}
+      h1{font-size:40px}
+      .grid3{grid-template-columns:1fr}
+      .contact-grid{grid-template-columns:1fr}
+      .menu{display:none}
+      .hamb{display:inline-flex}
+    }
+    @media (max-width: 420px){
+      .btn{width:100%}
+    }
+  </style>
 </head>
-<body>
 
-<header>
-    <h1>Virales Distribuidora LTDA</h1>
-    <p>Agilidade e eficiência no fornecimento de materiais hospitalares, laboratoriais e odontológicos.</p>
-</header>
+<body class="bg">
+  <div class="topbar">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Ir para o topo">
+          <span class="mark" aria-hidden="true">V</span>
+          <span class="wordmark">
+            <span class="name">Virales</span>
+            <span class="tag">Soluções em saúde e laboratório</span>
+          </span>
+        </a>
 
-<section>
-    <h2>Quem Somos</h2>
-    <div class="card">
-        <p>A Virales Distribuidora LTDA atua no fornecimento de produtos para órgãos públicos e instituições privadas, com foco em agilidade, confiabilidade e cumprimento rigoroso de prazos.</p>
-        <p>Trabalhamos com modelo sob demanda, garantindo competitividade e eficiência logística.</p>
+        <nav class="menu" aria-label="Menu">
+          <a href="#solucoes">Soluções</a>
+          <a href="#como">Como atuamos</a>
+          <a href="#conformidade">Conformidade</a>
+          <a href="#contato">Contato</a>
+          <a class="btn primary" id="navWpp" href="#">WhatsApp</a>
+        </nav>
+
+        <a class="btn hamb" href="#contato">Contato</a>
+      </div>
     </div>
-</section>
+  </div>
 
-<section>
-    <h2>Áreas de Atuação</h2>
-    <div class="card">
-        <ul>
-            <li>Materiais Médico-Hospitalares</li>
-            <li>Materiais e Equipamentos Laboratoriais</li>
-            <li>Produtos Odontológicos</li>
-            <li>Fornecimento para Licitações Públicas</li>
-        </ul>
+  <header id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">Conformidade • custo-benefício • prazos</div>
+
+          <h1>Soluções dentro das normativas, com melhor custo-benefício.</h1>
+
+          <p class="sub">
+            A Virales apoia instituições e empresas na aquisição de itens para saúde e laboratório,
+            com alinhamento de especificação, documentação quando aplicável e comunicação direta via WhatsApp.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn primary" id="heroWpp" href="#">Falar no WhatsApp</a>
+            <a class="btn" href="#solucoes">Ver soluções</a>
+          </div>
+        </div>
+
+        <aside class="panel" aria-label="Destaques">
+          <h3>O que você pode esperar</h3>
+          <div class="bullets">
+            <div class="bullet"><span class="icon" aria-hidden="true"></span><div><b>Conformidade</b><br/>Atendimento alinhado às normativas e requisitos do setor.</div></div>
+            <div class="bullet"><span class="icon" aria-hidden="true"></span><div><b>Custo-benefício</b><br/>Proposta buscando a melhor relação entre solução, prazo e preço.</div></div>
+            <div class="bullet"><span class="icon" aria-hidden="true"></span><div><b>Prazos realistas</b><br/>Compromisso com previsibilidade e acompanhamento do fluxo.</div></div>
+            <div class="bullet"><span class="icon" aria-hidden="true"></span><div><b>Especificação correta</b><br/>Reduzimos risco de divergência e retrabalho.</div></div>
+          </div>
+        </aside>
+      </div>
     </div>
-</section>
+  </header>
 
-<section>
-    <h2>Dados Cadastrais</h2>
-    <div class="card">
-        <p><strong>Razão Social:</strong> Virales Distribuidora LTDA</p>
-        <p><strong>CNPJ:</strong> 58.290.041/0001-40</p>
-        <p><strong>Inscrição Estadual:</strong> 597.030.303.118</p>
-        <p><strong>Endereço:</strong> Av. dos Jequitibás, 279 – Sala 1, Jardim Guaiuvira, Sales Oliveira – SP</p>
-        <p><strong>E-mail:</strong> administrativo@virales.com.br</p>
-        <p><strong>Telefone:</strong> (16) 99363-3531</p>
+  <main>
+    <section id="solucoes">
+      <div class="container">
+        <div class="head">
+          <div>
+            <h2>Soluções</h2>
+            <p class="lead">
+              Posicionamento institucional e objetivo: resolver a sua demanda com clareza, conformidade e previsibilidade.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Saúde</h3>
+            <p>Alinhamento de especificação e foco em reduzir divergências e retrabalho.</p>
+            <div class="mini">Ênfase: conformidade e clareza</div>
+          </div>
+
+          <div class="card">
+            <h3>Laboratório</h3>
+            <p>Suporte para definir a melhor solução com custo-benefício e requisitos mínimos.</p>
+            <div class="mini">Ênfase: solução + preço + prazo</div>
+          </div>
+
+          <div class="card">
+            <h3>Atendimento institucional</h3>
+            <p>Fluxo simples para orientar documentação e condições quando aplicável.</p>
+            <div class="mini">Ênfase: organização e previsibilidade</div>
+          </div>
+        </div>
+
+        <div class="cta">
+          <div>
+            <h3>Quer cotar agora?</h3>
+            <p>Envie item + quantidade + cidade + prazo. Retornamos pelo WhatsApp.</p>
+          </div>
+          <a class="btn primary" id="ctaWpp" href="#">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="como">
+      <div class="container">
+        <div class="head">
+          <div>
+            <h2>Como atuamos</h2>
+            <p class="lead">Um fluxo curto para acelerar o que importa e registrar o essencial.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>1) Entendimento</h3>
+            <p>Você informa a demanda e o contexto (prazo, local, requisitos).</p>
+          </div>
+          <div class="card">
+            <h3>2) Especificação</h3>
+            <p>Confirmamos detalhes para evitar divergência e retrabalho.</p>
+          </div>
+          <div class="card">
+            <h3>3) Proposta</h3>
+            <p>Retorno objetivo e acompanhamento do fluxo até a conclusão.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="conformidade">
+      <div class="container">
+        <div class="head">
+          <div>
+            <h2>Conformidade</h2>
+            <p class="lead">
+              Se houver necessidade de documentos/declarações para cadastro ou processo interno, solicite via WhatsApp e orientamos o envio.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="card">
+            <h3>Organização documental</h3>
+            <p>Orientação e envio conforme necessidade do cliente/órgão.</p>
+          </div>
+          <div class="card">
+            <h3>Rastreabilidade</h3>
+            <p>Comunicação clara e registro do essencial do atendimento.</p>
+          </div>
+          <div class="card">
+            <h3>Transparência</h3>
+            <p>Clareza sobre prazos e condições para reduzir ruído e imprevistos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contato" class="contact">
+      <div class="container">
+        <div class="head">
+          <div>
+            <h2>Contato</h2>
+            <p class="lead">Contato direto via WhatsApp para agilizar atendimento. Sem endereço no site.</p>
+          </div>
+        </div>
+
+        <div class="contact-grid">
+          <div class="card">
+            <h3>Enviar mensagem</h3>
+            <p class="lead" style="max-width:none">Preencha e abriremos o WhatsApp com sua mensagem pronta.</p>
+
+            <form class="form" id="contactForm">
+              <input type="text" id="nome" placeholder="Seu nome" required />
+              <input type="text" id="assunto" placeholder="Assunto (ex.: cotação / cadastro / dúvidas)" required />
+              <textarea id="mensagem" placeholder="Descreva a demanda (item, quantidade, cidade, prazo...)" required></textarea>
+              <div class="helper">Ao enviar, abrimos uma conversa no WhatsApp com o texto preenchido.</div>
+              <button class="btn primary" type="submit">Enviar no WhatsApp</button>
+            </form>
+          </div>
+
+          <div class="card">
+            <h3>Atalho rápido</h3>
+            <p class="lead" style="max-width:none">Clique e fale com a Virales agora.</p>
+            <div style="margin-top:12px; display:grid; gap:10px">
+              <a class="btn primary" id="contactWpp" href="#">WhatsApp</a>
+              <p class="lead" style="max-width:none; font-size:14px">
+                Para agilizar: <b>item + quantidade + cidade + prazo</b>.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div><strong style="color:var(--text)">Virales</strong> — Soluções em saúde e laboratório</div>
+      <div class="links">
+        <a href="#solucoes">Soluções</a>
+        <a href="#como">Como atuamos</a>
+        <a href="#conformidade">Conformidade</a>
+        <a href="#contato">Contato</a>
+      </div>
     </div>
-</section>
+  </footer>
 
-<section>
-    <h2>Contato</h2>
-    <div class="card">
-        <p>Entre em contato para cotações e informações comerciais.</p>
-        <a href="mailto:administrativo@virales.com.br" class="button">Enviar E-mail</a>
-    </div>
-</section>
+  <a class="wpp" id="floatWpp" href="#" aria-label="Falar no WhatsApp">
+    <span aria-hidden="true">💬</span> WhatsApp
+  </a>
 
-<footer>
-    © 2026 Virales Distribuidora LTDA - Todos os direitos reservados.
-</footer>
+  <script>
+    const WHATSAPP_NUMBER = "5516981323374";
 
+    function wppLink(message) {
+      const text = encodeURIComponent(message || "Olá! Vim pelo site da Virales e gostaria de atendimento.");
+      return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+    }
+    function bindWpp(id, message) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.href = wppLink(message);
+      el.target = "_blank";
+      el.rel = "noopener";
+    }
+
+    bindWpp("navWpp", "Olá! Vim pelo site da Virales e gostaria de atendimento.");
+    bindWpp("heroWpp", "Olá! Vim pelo site da Virales e gostaria de atendimento.");
+    bindWpp("ctaWpp", "Olá! Quero solicitar uma cotação com a Virales.");
+    bindWpp("contactWpp", "Olá! Quero falar com a Virales.");
+    bindWpp("floatWpp", "Olá! Vim pelo site da Virales e gostaria de atendimento.");
+
+    const form = document.getElementById("contactForm");
+    form?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const nome = document.getElementById("nome")?.value?.trim() || "";
+      const assunto = document.getElementById("assunto")?.value?.trim() || "";
+      const mensagem = document.getElementById("mensagem")?.value?.trim() || "";
+      const msg =
+`Olá! Vim pelo site da Virales.
+Nome: ${nome}
+Assunto: ${assunto}
+
+Mensagem:
+${mensagem}`;
+      window.open(wppLink(msg), "_blank", "noopener");
+    });
+  </script>
 </body>
 </html>
