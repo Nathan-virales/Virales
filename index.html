@@ -1,169 +1,137 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Virales</title>
-  <meta name="description" content="Virales — Distribuição técnica para saúde e laboratórios. Atendimento via WhatsApp." />
-  <meta name="theme-color" content="#0b1f2a" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Virales</title>
+<meta name="description" content="Virales — Distribuição técnica para saúde e laboratórios." />
 
-  <style>
-    :root{
-      --bg: #071821;
-      --overlay: rgba(4, 16, 22, .58);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
-      --card: rgba(255,255,255,.06);
-      --border: rgba(255,255,255,.14);
-      --shadow: 0 18px 55px rgba(0,0,0,.45);
-      --radius: 18px;
-    }
+<style>
+:root{
+  --primary:#0F2B46;
+  --accent:#2E5C88;
+  --light:#F4F8FB;
+  --text:#1A1A1A;
+  --muted:#6B7280;
+}
 
-    *{ box-sizing: border-box; }
-    html,body{ height: 100%; }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color: var(--text);
-      background: var(--bg);
-      overflow-x: hidden;
-    }
+*{box-sizing:border-box;margin:0;padding:0;}
 
-    /* Background image */
-    .bg{
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      background:
-        linear-gradient(180deg, rgba(0,0,0,.25), rgba(0,0,0,.65)),
-        url("https://images.unsplash.com/photo-1582719478185-2b2b9b25d7ff?auto=format&fit=crop&w=2400&q=80");
-      background-size: cover;
-      background-position: center;
-      filter: saturate(1.05) contrast(1.05);
-      transform: scale(1.02);
-    }
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  background:white;
+  color:var(--text);
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
 
-    /* Soft overlay */
-    .overlay{
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      background: radial-gradient(900px 450px at 50% 35%, rgba(90,185,255,.10), transparent 60%),
-                  linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.55)),
-                  var(--overlay);
-      backdrop-filter: blur(2px);
-    }
+/* Background premium subtle lab texture */
+body::before{
+  content:"";
+  position:absolute;
+  width:800px;
+  height:800px;
+  background:radial-gradient(circle at center, #E6F1FA 0%, transparent 70%);
+  top:-200px;
+  right:-200px;
+  z-index:0;
+}
 
-    main{
-      min-height: 100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 28px 18px;
-    }
+body::after{
+  content:"";
+  position:absolute;
+  width:600px;
+  height:600px;
+  background:radial-gradient(circle at center, #F0F6FB 0%, transparent 70%);
+  bottom:-150px;
+  left:-150px;
+  z-index:0;
+}
 
-    .card{
-      width: min(560px, 92vw);
-      padding: 34px 26px;
-      border-radius: var(--radius);
-      background: var(--card);
-      border: 1px solid var(--border);
-      box-shadow: var(--shadow);
-      text-align: center;
-    }
+.container{
+  position:relative;
+  text-align:center;
+  max-width:600px;
+  padding:40px;
+  z-index:1;
+}
 
-    .brand{
-      letter-spacing: .22em;
-      font-weight: 650;
-      font-size: 14px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.78);
-      margin-bottom: 10px;
-    }
+.brand{
+  font-size:14px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:20px;
+}
 
-    h1{
-      margin: 0 0 10px;
-      font-size: clamp(30px, 5.5vw, 44px);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-    }
+h1{
+  font-size:clamp(40px,6vw,64px);
+  font-weight:600;
+  color:var(--primary);
+  letter-spacing:-1px;
+  margin-bottom:15px;
+}
 
-    .sub{
-      margin: 0 auto 22px;
-      max-width: 42ch;
-      font-size: 15px;
-      line-height: 1.55;
-      color: var(--muted);
-    }
+.subtitle{
+  font-size:18px;
+  color:var(--muted);
+  margin-bottom:35px;
+  line-height:1.6;
+}
 
-    .btn{
-      display: inline-flex;
-      align-items: center;
-      justify-content:center;
-      gap: 10px;
-      padding: 12px 16px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.22);
-      background: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.92);
-      text-decoration: none;
-      font-weight: 600;
-      transition: transform .12s ease, background .12s ease, border-color .12s ease;
-      user-select: none;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.14); border-color: rgba(255,255,255,.28); }
-    .btn:active{ transform: translateY(0px); }
+.button{
+  display:inline-block;
+  padding:14px 28px;
+  border-radius:30px;
+  text-decoration:none;
+  font-weight:600;
+  font-size:15px;
+  color:white;
+  background:var(--primary);
+  transition:all .25s ease;
+}
 
-    .foot{
-      margin-top: 18px;
-      font-size: 12px;
-      color: rgba(255,255,255,.55);
-      display:flex;
-      gap: 10px;
-      align-items:center;
-      justify-content:center;
-      flex-wrap: wrap;
-    }
-    .dot{ opacity:.5; }
+.button:hover{
+  background:var(--accent);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.08);
+}
 
-    /* Small screens */
-    @media (max-width: 420px){
-      .card{ padding: 28px 18px; }
-      .sub{ font-size: 14px; }
-    }
-  </style>
+.footer{
+  margin-top:40px;
+  font-size:13px;
+  color:#9CA3AF;
+}
+</style>
 </head>
 
 <body>
-  <div class="bg" aria-hidden="true"></div>
-  <div class="overlay" aria-hidden="true"></div>
 
-  <main>
-    <section class="card" role="region" aria-label="Virales">
-      <div class="brand">VIRALES</div>
-      <h1>Saúde &amp; Laboratórios</h1>
+<div class="container">
 
-      <p class="sub">
-        Distribuição técnica para instituições.
-        Agilidade, conformidade e atendimento direto pelo WhatsApp.
-      </p>
+<div class="brand">Distribuição Técnica</div>
 
-      <!-- TROQUE o número abaixo para o seu WhatsApp (DDI+DDD+Número, só dígitos) -->
-      <a class="btn"
-         href="https://wa.me/5534991696661?text=Olá!%20Quero%20atendimento%20da%20Virales."
-         target="_blank" rel="noopener">
-        Falar no WhatsApp
-      </a>
+<h1>VIRALES</h1>
 
-      <div class="foot" aria-label="Informações">
-        <span>Atendimento institucional</span>
-        <span class="dot">•</span>
-        <span>Responsabilidade técnica</span>
-        <span class="dot">•</span>
-        <span>Brasil</span>
-      </div>
-    </section>
-  </main>
+<p class="subtitle">
+Fornecimento institucional para saúde e laboratórios.<br>
+Conformidade, agilidade e responsabilidade técnica.
+</p>
+
+<a class="button"
+href="https://wa.me/5534991696661?text=Olá!%20Quero%20atendimento%20da%20Virales."
+target="_blank">
+Falar no WhatsApp
+</a>
+
+<div class="footer">
+Brasil • Atendimento institucional
+</div>
+
+</div>
+
 </body>
 </html>
