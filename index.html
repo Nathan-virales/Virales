@@ -12,6 +12,8 @@
   --accent:#2E5C88;
   --text:#1A1A1A;
   --muted:#6B7280;
+  --border:#E5E7EB;
+  --bg-soft:#F7FAFD;
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
@@ -38,7 +40,6 @@ body::before{
   right:-250px;
   z-index:0;
 }
-
 body::after{
   content:"";
   position:absolute;
@@ -53,7 +54,7 @@ body::after{
 .container{
   position:relative;
   text-align:center;
-  max-width:620px;
+  max-width:680px;
   padding:40px;
   z-index:1;
 }
@@ -70,19 +71,32 @@ h1{
   font-size:18px;
   color:var(--muted);
   line-height:1.6;
-  margin-bottom:30px;
+  margin-bottom:26px;
+}
+
+.actions{
+  display:flex;
+  gap:12px;
+  justify-content:center;
+  flex-wrap:wrap;
+  margin-bottom:16px;
 }
 
 .button{
-  display:inline-block;
-  padding:14px 34px;
-  border-radius:30px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:14px 24px;
+  border-radius:999px;
   text-decoration:none;
   font-weight:600;
   font-size:15px;
   color:white;
   background:var(--primary);
+  border:1px solid transparent;
   transition:all .25s ease;
+  cursor:pointer;
 }
 
 .button:hover{
@@ -91,36 +105,357 @@ h1{
   box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
+.button.secondary{
+  background:white;
+  color:var(--primary);
+  border-color:var(--border);
+}
+.button.secondary:hover{
+  background:var(--bg-soft);
+  transform:translateY(-2px);
+  box-shadow:0 8px 20px rgba(0,0,0,0.06);
+}
+
 .footer{
-  margin-top:40px;
+  margin-top:26px;
   font-size:13px;
   color:#9CA3AF;
 }
+
+/* ===== Modal ===== */
+.modal-overlay{
+  position:fixed;
+  inset:0;
+  background:rgba(15,43,70,.35);
+  backdrop-filter: blur(6px);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:50;
+  padding:18px;
+}
+
+.modal{
+  width:min(720px, 100%);
+  background:white;
+  border:1px solid var(--border);
+  border-radius:18px;
+  box-shadow:0 25px 70px rgba(0,0,0,.18);
+  overflow:hidden;
+  text-align:left;
+}
+
+.modal-header{
+  padding:18px 18px 14px;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.modal-title{
+  font-size:18px;
+  font-weight:700;
+  color:var(--primary);
+  margin-bottom:4px;
+}
+
+.modal-subtitle{
+  font-size:13px;
+  color:var(--muted);
+  line-height:1.4;
+}
+
+.modal-close{
+  border:none;
+  background:transparent;
+  font-size:22px;
+  line-height:1;
+  cursor:pointer;
+  color:#6B7280;
+  padding:6px 8px;
+  border-radius:10px;
+}
+.modal-close:hover{ background:var(--bg-soft); }
+
+.modal-body{ padding:16px 18px 18px; }
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+}
+@media (max-width: 640px){
+  .grid{ grid-template-columns:1fr; }
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  color:#374151;
+  margin:0 0 6px;
+  font-weight:600;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid var(--border);
+  background:white;
+  border-radius:12px;
+  padding:12px 12px;
+  font-size:14px;
+  outline:none;
+  transition:border-color .15s ease, box-shadow .15s ease;
+}
+
+.field textarea{ min-height:110px; resize:vertical; }
+
+.field input:focus,
+.field textarea:focus{
+  border-color:#9CC2E6;
+  box-shadow:0 0 0 4px rgba(156,194,230,.35);
+}
+
+.hint{
+  margin-top:6px;
+  font-size:12px;
+  color:var(--muted);
+}
+
+.modal-actions{
+  display:flex;
+  gap:10px;
+  justify-content:flex-end;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+}
+
+.toast{
+  margin-top:12px;
+  font-size:13px;
+  color:var(--muted);
+}
+.toast strong{ color:var(--primary); }
 </style>
 </head>
 
 <body>
 
 <div class="container">
+  <h1>VIRALES</h1>
 
-<h1>VIRALES</h1>
+  <p class="description">
+    Fornecimento institucional para saúde, laboratórios e EPIs.<br>
+    Conformidade, agilidade e responsabilidade técnica.
+  </p>
 
-<p class="description">
-Fornecimento institucional para saúde, laboratórios e EPIs.<br>
-Conformidade, agilidade e responsabilidade técnica.
-</p>
+  <div class="actions">
+    <a class="button"
+      href="https://wa.me/5516981323374?text=Olá!%20Quero%20atendimento%20da%20Virales."
+      target="_blank" rel="noopener">
+      Falar no WhatsApp
+    </a>
 
-<a class="button"
-href="https://wa.me/5516981323374?text=Olá!%20Quero%20atendimento%20da%20Virales."
-target="_blank">
-Falar no WhatsApp
-</a>
+    <button class="button secondary" id="btnCotacao" type="button">
+      Solicitar cotação
+    </button>
 
-<div class="footer">
-CNPJ 58.290.041/0001-40 • Brasil
+    <button class="button secondary" id="btnAssistencia" type="button">
+      Garantia / Assistência
+    </button>
+  </div>
+
+  <div class="footer">
+    CNPJ 58.290.041/0001-40 • Brasil
+  </div>
 </div>
 
+<!-- Modal -->
+<div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modalTitle">Formulário</div>
+        <div class="modal-subtitle" id="modalSubtitle">
+          Preencha os dados e envie. Você receberá retorno por e-mail/WhatsApp.
+        </div>
+      </div>
+      <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
+    </div>
+
+    <div class="modal-body">
+      <form id="contactForm">
+        <input type="hidden" name="type" id="formType" value="cotacao" />
+        <input type="hidden" name="page" value="home" />
+
+        <div class="grid">
+          <div class="field">
+            <label for="name">Nome *</label>
+            <input id="name" name="name" type="text" autocomplete="name" required />
+          </div>
+
+          <div class="field">
+            <label for="company">Empresa</label>
+            <input id="company" name="company" type="text" autocomplete="organization" />
+          </div>
+
+          <div class="field">
+            <label for="email">E-mail *</label>
+            <input id="email" name="email" type="email" autocomplete="email" required />
+          </div>
+
+          <div class="field">
+            <label for="phone">WhatsApp / Telefone *</label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" required placeholder="(DD) 9xxxx-xxxx" />
+          </div>
+
+          <div class="field" id="fieldCnpj">
+            <label for="cnpj">CNPJ</label>
+            <input id="cnpj" name="cnpj" type="text" inputmode="numeric" placeholder="00.000.000/0000-00" />
+          </div>
+
+          <div class="field" id="fieldCity">
+            <label for="city">Cidade/UF</label>
+            <input id="city" name="city" type="text" placeholder="Ex.: Sales Oliveira/SP" />
+          </div>
+
+          <!-- Campos específicos (Cotação) -->
+          <div class="field" id="fieldItem">
+            <label for="item">Produto/Item para cotação *</label>
+            <input id="item" name="item" type="text" placeholder="Ex.: micropipeta, EPI, reagente..." required />
+          </div>
+
+          <div class="field" id="fieldQty">
+            <label for="qty">Quantidade</label>
+            <input id="qty" name="qty" type="text" placeholder="Ex.: 30 unidades" />
+          </div>
+        </div>
+
+        <div class="field" style="margin-top:12px;">
+          <label for="message">Mensagem *</label>
+          <textarea id="message" name="message" required placeholder="Descreva sua necessidade."></textarea>
+          <div class="hint" id="messageHint">Dica: inclua marca/modelo e prazo desejado.</div>
+        </div>
+
+        <div class="modal-actions">
+          <button class="button secondary" type="button" id="btnCancel">Cancelar</button>
+          <button class="button" type="submit" id="btnSubmit">Enviar</button>
+        </div>
+
+        <div class="toast" id="toast" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
 </div>
+
+<script>
+const modalOverlay = document.getElementById("modalOverlay");
+const modalClose = document.getElementById("modalClose");
+const btnCancel = document.getElementById("btnCancel");
+const btnCotacao = document.getElementById("btnCotacao");
+const btnAssistencia = document.getElementById("btnAssistencia");
+const form = document.getElementById("contactForm");
+const formType = document.getElementById("formType");
+const modalTitle = document.getElementById("modalTitle");
+const modalSubtitle = document.getElementById("modalSubtitle");
+const toast = document.getElementById("toast");
+const btnSubmit = document.getElementById("btnSubmit");
+
+const fieldItem = document.getElementById("fieldItem");
+const fieldQty = document.getElementById("fieldQty");
+const itemInput = document.getElementById("item");
+const msgHint = document.getElementById("messageHint");
+
+function openModal(type){
+  toast.textContent = "";
+  form.reset();
+
+  formType.value = type;
+
+  if(type === "cotacao"){
+    modalTitle.textContent = "Solicitar cotação";
+    modalSubtitle.textContent = "Preencha os dados e descreva o item. Enviaremos a cotação por e-mail/WhatsApp.";
+
+    fieldItem.style.display = "";
+    fieldQty.style.display = "";
+    itemInput.required = true;
+
+    msgHint.textContent = "Dica: inclua marca/modelo, especificações e prazo desejado.";
+  }else{
+    modalTitle.textContent = "Garantia / Assistência";
+    modalSubtitle.textContent = "Explique o problema para agilizar o atendimento.";
+
+    fieldItem.style.display = "none";
+    fieldQty.style.display = "none";
+    itemInput.required = false;
+
+    msgHint.textContent = "Dica: descreva o defeito, quando começou e se o equipamento está parado.";
+  }
+
+  modalOverlay.style.display = "flex";
+  modalOverlay.setAttribute("aria-hidden", "false");
+  setTimeout(() => document.getElementById("name").focus(), 50);
+}
+
+function closeModal(){
+  modalOverlay.style.display = "none";
+  modalOverlay.setAttribute("aria-hidden", "true");
+}
+
+btnCotacao.addEventListener("click", () => openModal("cotacao"));
+btnAssistencia.addEventListener("click", () => openModal("assistencia"));
+modalClose.addEventListener("click", closeModal);
+btnCancel.addEventListener("click", closeModal);
+
+modalOverlay.addEventListener("click", (e) => {
+  if(e.target === modalOverlay) closeModal();
+});
+
+document.addEventListener("keydown", (e) => {
+  if(e.key === "Escape" && modalOverlay.style.display === "flex") closeModal();
+});
+
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  toast.textContent = "";
+  btnSubmit.disabled = true;
+  btnSubmit.textContent = "Enviando...";
+
+  try{
+    const payload = Object.fromEntries(new FormData(form).entries());
+
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+
+    const data = await res.json().catch(() => ({}));
+
+    if(!res.ok){
+      throw new Error(data?.error || "Falha ao enviar. Tente novamente.");
+    }
+
+    toast.innerHTML = "<strong>Enviado!</strong> Recebemos sua solicitação e vamos retornar em breve.";
+    btnSubmit.textContent = "Enviado ✓";
+
+    setTimeout(() => {
+      closeModal();
+      btnSubmit.disabled = false;
+      btnSubmit.textContent = "Enviar";
+    }, 1200);
+
+  }catch(err){
+    toast.textContent = err.message || "Erro ao enviar. Tente novamente.";
+    btnSubmit.disabled = false;
+    btnSubmit.textContent = "Enviar";
+  }
+});
+</script>
 
 </body>
 </html>
